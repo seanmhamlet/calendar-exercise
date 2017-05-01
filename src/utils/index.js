@@ -38,9 +38,18 @@ export const filterEventsByHour = (events, hour) => (
 export const getDisplayDate = (timestamp) => {
     let date = new Date(timestamp);
 
-    // TODO: Format the date like: "Tuesday, April 11, 2017"
+    let WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let MONTHS = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
-    return date.toString();
+    let weekDay = WEEKDAYS[date.getDay()];
+    let month = MONTHS[date.getMonth()];
+    let day = date.getDate();
+    let year = date.getFullYear();
+
+    return `${weekDay}, ${month} ${day}, ${year}`;
 };
 
 /**
