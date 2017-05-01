@@ -65,17 +65,22 @@
     width: 1rem;
     vertical-align: sub;
     margin-left: 0.5rem;
-    background-color: #000;
+    background-color: transparent;
+    border: 1px solid transparent;
 }
 .event-detail-overlay--sky {
     background-color: #d1e8f0;
+    border-color: #307992;
 }
 .event-detail-overlay--canary {
     background-color: #fcf69a;
+    border-color: #938a04;
 }
 .event-detail-overlay--rose {
     background-color: #fcbbd2;
+    border-color: #b00843;
 }
 .event-detail-overlay--shamrock {
     background-color: #009e60;
+    border-color: #003800;
 }
