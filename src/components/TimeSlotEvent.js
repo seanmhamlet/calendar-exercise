@@ -19,11 +19,16 @@ export default class TimeSlotEvent extends PureComponent {
         // Compute end time of event based on event length
         let eventEnd = start + hours * (MINUTES_HOUR * SECONDS_MINUTE * MILLISECONDS_SECOND);
 
+        // Define default time-slot class names
+        let timeSlotClassNames = `time-slot-event time-slot-event--${color}`;
+
         // Event is in past if event end time has occurred, so display faded out
-        let timeSlotPastClass = eventEnd < Date.now() ? 'time-slot-event--past' : '';
+        if (eventEnd < Date.now()) {
+            timeSlotClassNames = `${timeSlotClassNames} time-slot-event--past`;
+        }
 
         return (
-            <button className={`time-slot-event time-slot-event--${color} ${timeSlotPastClass}`} onClick={onSelect}>
+            <button className={timeSlotClassNames} onClick={onSelect}>
                 {title}
             </button>
         );
