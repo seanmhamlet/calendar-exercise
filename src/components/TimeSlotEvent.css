@@ -1,6 +1,3 @@
-/*
- * TODO: Past events should display faded-out
- */
 .time-slot-event {
     display: block;
     cursor: pointer;
@@ -12,6 +9,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 100%;
+}
+.time-slot-event--past {
+    opacity: 0.2;
 }
 .time-slot-event::-moz-focus-inner {
   border: 0;

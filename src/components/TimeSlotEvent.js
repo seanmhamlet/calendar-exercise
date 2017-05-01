@@ -1,5 +1,6 @@
 import React, {PureComponent, PropTypes} from 'react';
 import {EVENT_PROP_TYPE} from './constants';
+import {MINUTES_HOUR, SECONDS_MINUTE, MILLISECONDS_SECOND} from '../utils/constants';
 
 import './TimeSlotEvent.css';
 
@@ -11,15 +12,18 @@ export default class TimeSlotEvent extends PureComponent {
 
     render() {
         let {
-            event: {title, color},
+            event: {title, color, start, hours},
             onSelect,
         } = this.props;
 
-        // TODO: Need a way to determine that the event is in the past so that it
-        // can be displayed faded-out
+        // Compute end time of event based on event length
+        let eventEnd = start + hours * (MINUTES_HOUR * SECONDS_MINUTE * MILLISECONDS_SECOND);
+
+        // Event is in past if event end time has occurred, so display faded out
+        let timeSlotPastClass = eventEnd < Date.now() ? 'time-slot-event--past' : '';
 
         return (
-            <button className={`time-slot-event time-slot-event--${color}`} onClick={onSelect}>
+            <button className={`time-slot-event time-slot-event--${color} ${timeSlotPastClass}`} onClick={onSelect}>
                 {title}
             </button>
         );
