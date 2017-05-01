@@ -6,10 +6,14 @@
  * @returns {array}
  */
 export const filterEventsByDay = (events, timestamp) => {
-    // TODO: Implement day filtering!
+    let date = new Date(timestamp);
 
-    return events;
-}
+    let dayStart = date.setHours(0, 0, 0, 0);
+
+    let dayEnd = date.setHours(24, 0, 0, 0);
+
+    return events.filter(({start}) => start >= dayStart && start < dayEnd);
+};
 
 /**
  * Given a list of events and an hour number, filter the events down to those that
