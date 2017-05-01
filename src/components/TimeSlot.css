@@ -10,7 +10,7 @@
     box-sizing: border-box;
 }
 .time-slot:last-of-type {
-        border-bottom: none;
+    border-bottom: none;
 }
 .time-slot__hour-label {
     width: 4rem;
