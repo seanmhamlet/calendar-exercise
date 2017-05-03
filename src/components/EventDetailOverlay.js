@@ -3,11 +3,16 @@ import {EVENT_PROP_TYPE} from './constants';
 import {getDisplayDate, getDisplayHour} from '../utils';
 
 import './EventDetailOverlay.css';
+import '../index.css';
 
 export default class EventDetailOverlay extends PureComponent {
     static propTypes = {
         event: EVENT_PROP_TYPE.isRequired,
         onClose: PropTypes.func.isRequired
+    }
+
+    componentDidMount() {
+        document.body.classList.add('no-scroll');
     }
 
     render() {

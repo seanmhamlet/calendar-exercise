@@ -6,6 +6,7 @@ import DATA_SET from '../utils/data';
 import {MILLISECONDS_DAY} from '../utils/constants';
 
 import './Page.css';
+import '../index.css';
 
 const DayNavigator = ({dateDisplay, onPrev, onNext}) => {
     return (
@@ -44,6 +45,7 @@ export default class Page extends PureComponent {
 
     _handleEventDetailOverlayClose() {
         this.setState({selectedEventId: undefined});
+        document.body.classList.remove('no-scroll');
     }
 
     _handlePrev() {
