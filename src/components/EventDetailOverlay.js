@@ -3,11 +3,16 @@ import {EVENT_PROP_TYPE} from './constants';
 import {getDisplayDate, getDisplayHour} from '../utils';
 
 import './EventDetailOverlay.css';
+import '../index.css';
 
 export default class EventDetailOverlay extends PureComponent {
     static propTypes = {
         event: EVENT_PROP_TYPE.isRequired,
         onClose: PropTypes.func.isRequired
+    }
+
+    componentDidMount() {
+        document.body.classList.add('no-scroll');
     }
 
     render() {
@@ -24,7 +29,6 @@ export default class EventDetailOverlay extends PureComponent {
 
         let displayDateTime = `${displayDate} ${startHourDisplay} - ${endHourDisplay}`;
 
-        // TODO: The event label color should match the event color
         // TODO: Add appropriate ARIA tags to overlay/dialog
         // TODO: Support clicking outside of the overlay to close it
         // TODO: Support clicking ESC to close it
@@ -39,7 +43,7 @@ export default class EventDetailOverlay extends PureComponent {
                     <div>
                         {displayDateTime}
                         <span
-                            className="event-detail-overlay__color"
+                            className={`event-detail-overlay__color event-detail-overlay--${color}`}
                             title={`Event label color: ${color}`}
                         />
                     </div>

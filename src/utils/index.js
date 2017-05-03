@@ -1,8 +1,3 @@
-const _HOUR_DISPLAY_MAP = [
-    '12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM',
-    '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM',
-]
-
 /**
  * Given a list of events and a date, filter the events down to those that
  * fall on the same day as the date
@@ -11,10 +6,14 @@ const _HOUR_DISPLAY_MAP = [
  * @returns {array}
  */
 export const filterEventsByDay = (events, timestamp) => {
-    // TODO: Implement day filtering!
+    let date = new Date(timestamp);
 
-    return events;
-}
+    let dayStart = date.setHours(0, 0, 0, 0);
+
+    let dayEnd = date.setHours(24, 0, 0, 0);
+
+    return events.filter(({start}) => start >= dayStart && start < dayEnd);
+};
 
 /**
  * Given a list of events and an hour number, filter the events down to those that
@@ -38,9 +37,18 @@ export const filterEventsByHour = (events, hour) => (
 export const getDisplayDate = (timestamp) => {
     let date = new Date(timestamp);
 
-    // TODO: Format the date like: "Tuesday, April 11, 2017"
+    let WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let MONTHS = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
-    return date.toString();
+    let weekDay = WEEKDAYS[date.getDay()];
+    let month = MONTHS[date.getMonth()];
+    let day = date.getDate();
+    let year = date.getFullYear();
+
+    return `${weekDay}, ${month} ${day}, ${year}`;
 };
 
 /**
@@ -48,8 +56,15 @@ export const getDisplayDate = (timestamp) => {
  * @param {number} hour - The hour
  * @returns {string}
  */
-// TODO: Implement using a more programmatic approach instead of map
-export const getDisplayHour = (hour) => _HOUR_DISPLAY_MAP[hour]
+export const getDisplayHour = (hour) => {
+
+    let period = hour < 12 ? 'AM' : 'PM';
+
+    // Convert hour to 12-hour clock
+    let hh = (hour + 11) % 12 + 1;
+
+    return `${hh}${period}`;
+};
 
 /**
  * Given a list of events, returns the event object whose id matches the specified eventId
