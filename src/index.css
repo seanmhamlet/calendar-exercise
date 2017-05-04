@@ -15,3 +15,7 @@ body {
     font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
     letter-spacing: 0.02em;
 }
+
+.no-scroll {
+    overflow: hidden;
+}
