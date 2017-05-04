@@ -13,10 +13,18 @@ export default class EventDetailOverlay extends PureComponent {
 
     componentDidMount() {
         document.body.classList.add('no-scroll');
+        document.addEventListener('keydown', this._handleKeyDown.bind(this));
     }
 
     componentWillUnmount() {
         document.body.classList.remove('no-scroll');
+        document.removeEventListener('keydown', this._handleKeyDown);
+    }
+
+    _handleKeyDown(e) {
+        if (e.keyCode === 27) {
+            this.props.onClose();
+        }
     }
 
     render() {
