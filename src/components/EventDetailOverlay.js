@@ -15,6 +15,10 @@ export default class EventDetailOverlay extends PureComponent {
         document.body.classList.add('no-scroll');
     }
 
+    componentWillUnmount() {
+        document.body.classList.remove('no-scroll');
+    }
+
     render() {
         let {event, onClose} = this.props;
         let {title, description, start, color, hours} = event;

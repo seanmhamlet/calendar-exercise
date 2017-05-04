@@ -45,7 +45,6 @@ export default class Page extends PureComponent {
 
     _handleEventDetailOverlayClose() {
         this.setState({selectedEventId: undefined});
-        document.body.classList.remove('no-scroll');
     }
 
     _handlePrev() {
